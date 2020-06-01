@@ -43,20 +43,31 @@ You can find below the new *web.yml* file.
 ## Task 7: Add more managed servers
 
 1. In AWS create another EC2 instance using the same parameters as before. Add the IP address of that instance to the *webservers* group in the *playbooks/hosts* inventory file.
-   - TODO
+   
+   - For this question we add a line in the *hosts* file, the file has been edited as following : 
+   
+     ```bash
+     [webservers]
+     testserver ansible_ssh_host=100.25.117.198
+     newserver ansible_ssh_host=54.162.3.62
+     ```
 2. Re-run the *web.yml* playbook. What do you observe in Ansible's output?
-   - TODO
+   
+   - For this question, we run again the command `ansible-playbook web.yml`. The output is shown in the screenshot below. We can see a new line on each task. The new lines represent the new server.  The *PLAY RECAP* part shows the summary about the two servers. Furthermore, we can see the output for the second server is the same as the one when we execute the command for first time with only the `testserver`.
+   
+     ![Playbook with two servers](./assets/Playbook2servers.png)
 3. Test the new server by pointing your web browser to it.
-   - TODO
+   
+   - The screenshot below shows the new server seen by a web browser. It is important to notice that the instance has not the same IP address than the one shown in previous question. This difference is because we reboot the instance and the IP address changed. 
+   
+     ![browser](./assets/browser.jpg)
 4. What happens if a server is not reachable? Shut down the second instance and re-run the playbook.
-   - TODO
+   
+   - You can find below the output of the `ansible-playbook web.yml` command. We can see that the new server is unreachable at the first task. For the following task, Ansible does not work with the second server.
+   
+     ![Playbook with server unreachable](./assets/PlaybookWithServerShutdown.png)
 5. Suppose you now have 10 web servers in production that you have configured using Ansible. You are working in the IT department of a company and some of your system administrator colleagues who don't use Ansible have logged manually into some of the servers to fix certain things. You don't know what they did exactly. What do you need to do to bring all 10 servers again to the initial state? We'll exclude drastic changes by your colleagues for this question.
-   - TODO
+   
+   - We can edit the *web.yml* by modifying the value of nginx service's state to have `absent`. Now, we have `restarted`. Change this value makes possible to do a rollback.
+   - An another solution is to have a snaphot before the modifications. We can restore the snapshot at any time to have a correct configuration.
 
-### Modification
-
-TODO
-
-### Observation of the Ansible behavior
-
-TODO
