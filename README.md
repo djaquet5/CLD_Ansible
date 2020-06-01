@@ -1,4 +1,4 @@
-# CLD - Lab 07: Ansible
+# CLD - Lab 07: Configuration management - Ansible
 
 
 > Authors : Baptiste Hardrick & David Jaquet
@@ -49,7 +49,7 @@ You can find below the new *web.yml* file.
      ```bash
      [webservers]
      testserver ansible_ssh_host=100.25.117.198
-     newserver ansible_ssh_host=54.162.3.62
+     newserver ansible_ssh_host=52.91.126.244
      ```
 2. Re-run the *web.yml* playbook. What do you observe in Ansible's output?
    
@@ -58,7 +58,7 @@ You can find below the new *web.yml* file.
      ![Playbook with two servers](./assets/Playbook2servers.png)
 3. Test the new server by pointing your web browser to it.
    
-   - The screenshot below shows the new server seen by a web browser. It is important to notice that the instance has not the same IP address than the one shown in previous question. This difference is because we reboot the instance and the IP address changed. 
+   - The screenshot below shows the new server seen by a web browser.
    
      ![browser](./assets/browser.jpg)
 4. What happens if a server is not reachable? Shut down the second instance and re-run the playbook.
